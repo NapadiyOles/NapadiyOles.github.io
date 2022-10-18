@@ -23,3 +23,7 @@ function f()
         cells[day].style.background = 'lightblue'
     }
 }
+
+function noLink(){
+    alert('Нажаль, посилання ще нема :(')
+}
