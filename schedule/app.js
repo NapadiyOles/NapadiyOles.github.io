@@ -1,17 +1,21 @@
 function f()
 {
-    currentDate = new Date();
-    startDate = new Date(currentDate.getFullYear(), 0, 1);
+    let currentDate = new Date();
+    let startDate = new Date(currentDate.getFullYear(), 0, 1);
     let days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
     let weekNumber = Math.ceil(days / 7);
-    let table
+    let table, label
     
     if(weekNumber % 2 === 0){
         table = document.getElementById('fw')
+        label = document.getElementById('fw-label')
     }
     else {
         table = document.getElementById('sw')
+        label = document.getElementById('sw-label')
     }
+
+    label.scrollIntoView()
     
     const rows = table.getElementsByTagName('tr')
     
