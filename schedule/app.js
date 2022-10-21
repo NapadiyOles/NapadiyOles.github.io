@@ -21,10 +21,14 @@ function f()
     
     const rlen = rows.length
     const day = new Date().getDay()
-    
+
+    if([6, 7].includes(day)){
+        return
+    }
+
     for (let i = 0; i < rlen; i++){
     let cells = rows[i].getElementsByTagName('td')
-        cells[day].style.background = 'lightblue'
+        cells[7].style.background = 'lightblue'
     }
 }
 
