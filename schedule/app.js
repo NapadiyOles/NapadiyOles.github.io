@@ -28,7 +28,7 @@ function f()
 
     for (let i = 0; i < rlen; i++){
     let cells = rows[i].getElementsByTagName('td')
-        cells[7].style.background = 'lightblue'
+        cells[day].style.background = 'lightblue'
     }
 }
 
