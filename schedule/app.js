@@ -5,14 +5,23 @@ function f()
     let days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
     let weekNumber = Math.ceil((days - 1) / 7);
     let table, label
+    let fw_label = document.getElementById('fw-label')
+    let sw_label = document.getElementById('sw-label')
+
+    fw_label.onclick = function (){
+        this.scrollIntoView()
+    }
+    sw_label.onclick = function (){
+        this.scrollIntoView()
+    }
 
     if(weekNumber % 2 === 0){
         table = document.getElementById('fw')
-        label = document.getElementById('fw-label')
+        label = fw_label
     }
     else {
         table = document.getElementById('sw')
-        label = document.getElementById('sw-label')
+        label = sw_label
     }
 
     label.scrollIntoView()
