@@ -1,53 +1,88 @@
-function f()
+
+const WeekDays = {
+    Mon: 1,
+    Tue: 2,
+    Wed: 3,
+    Thu: 4,
+    Fri: 5
+}
+
+let week = 0;
+
+function fillTableById(table, week, current_day, fill_back){
+    const rows = table.getElementsByTagName('tr');
+
+    const r_len = rows.length
+    for (let i = 1; i < r_len; i++) {
+        let cells = rows[i].getElementsByTagName('td');
+        for (let day in WeekDays){
+            let obj = schedule[week][i - 1][day];
+            let cell = cells[WeekDays[day]];
+            if(obj){
+                cell.innerHTML = `<div class="card">
+                    <a class="card-body" href="${obj.Subject.Link}" target="_blank">${obj.Subject['Name']}</a>
+                    </div>
+                    <div class="text-secondary">${obj.Type}<br>${obj.Subject.Teacher}</div>`
+                // let card = document.createElement('div')
+                // card.className = 'card'
+                // let body = document.createElement('a')
+                // body.className = 'card-body'
+                // body.target = '_blank';
+                // body.href = obj.Link;
+                // body.innerHTML = obj.Subject
+                // let footer = document.createElement('div')
+                // footer.className = 'text-secondary'
+                // footer.innerHTML = obj.Type + '<br>' + obj.Teacher
+                // card.appendChild(body);
+                // cell.appendChild(card);
+                // cell.appendChild(footer);
+            }
+
+            if(!([6, 0].includes(current_day))) {
+                if(fill_back) {
+                    cells[current_day].style.background = 'lightblue';
+                }
+                else {
+                    cells[current_day].style.background = 'none';
+                }
+            }
+        }
+    }
+
+}
+
+function enhanceCurrentTable()
 {
     let currentDate = new Date();
     let startDate = new Date(currentDate.getFullYear(), 0, 1);
     let days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
     let weekNumber = Math.ceil((days - 1) / 7);
-    let table, label
-    let fw_label = document.getElementById('fw-label')
-    let sw_label = document.getElementById('sw-label')
-
-    fw_label.onclick = function (){
-        this.scrollIntoView()
-    }
-    sw_label.onclick = function (){
-        this.scrollIntoView()
-    }
+    let table = document.getElementById('schedule')
+    let label = document.getElementById('label')
 
     if(weekNumber % 2 === 0){
-        table = document.getElementById('fw')
-        label = fw_label
+        week = 1;
+        label.innerHTML = 'Перший тиждень'
+        fillTableById(table, 'week1', currentDate.getDay(), true)
     }
     else {
-        table = document.getElementById('sw')
-        label = sw_label
-    }
-
-    label.scrollIntoView()
-    
-    const rows = table.getElementsByTagName('tr')
-    
-    const rlen = rows.length
-    const day = new Date().getDay()
-
-    if([6, 0].includes(day)){
-        let text = label.innerHTML;
-        label.onmouseover = function() {
-            this.innerHTML = 'Сьогодні вихідний ✌'
-        }
-        label.onmouseleave = function (){
-            this.innerHTML = text
-        }
-        return
-    }
-
-    for (let i = 0; i < rlen; i++){
-        let cells = rows[i].getElementsByTagName('td')
-        cells[day].style.background = 'lightblue'
+        week = 2;
+        label.innerHTML = 'Другий тиждень'
+        fillTableById(table, 'week2', currentDate.getDay(), true)
     }
 }
 
-function noLink(){
-    alert('Нажаль, посилання ще нема :(')
+function swapWeeks(){
+    let table = document.getElementById('schedule')
+    let label = document.getElementById('label')
+    let date = new Date();
+    if(label.innerText === 'Перший тиждень'){
+        table.style.background = '';
+        label.innerText = 'Другий тиждень'
+        fillTableById(table, 'week2', date.getDay(), week === 2)
+    }
+    else {
+        label.innerText = 'Перший тиждень'
+        fillTableById(table, 'week1', date.getDay(), week === 1)
+    }
 }
