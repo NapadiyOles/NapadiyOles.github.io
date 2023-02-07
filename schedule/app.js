@@ -18,24 +18,12 @@ function fillTableById(table, week, current_day, fill_back){
         for (let day in WeekDays){
             let obj = schedule[week][i - 1][day];
             let cell = cells[WeekDays[day]];
+            cell.innerHTML = null;
             if(obj){
                 cell.innerHTML = `<div class="card">
                     <a class="card-body" href="${obj.Subject.Link}" target="_blank">${obj.Subject['Name']}</a>
                     </div>
                     <div class="text-secondary">${obj.Type}<br>${obj.Subject.Teacher}</div>`
-                // let card = document.createElement('div')
-                // card.className = 'card'
-                // let body = document.createElement('a')
-                // body.className = 'card-body'
-                // body.target = '_blank';
-                // body.href = obj.Link;
-                // body.innerHTML = obj.Subject
-                // let footer = document.createElement('div')
-                // footer.className = 'text-secondary'
-                // footer.innerHTML = obj.Type + '<br>' + obj.Teacher
-                // card.appendChild(body);
-                // cell.appendChild(card);
-                // cell.appendChild(footer);
             }
 
             if(!([6, 0].includes(current_day))) {
