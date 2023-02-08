@@ -21,7 +21,7 @@ const subjects = {
     },
     'СМОМД': {
         Name: 'Сучасні методи обробки масивів даних',
-        Link: '',
+        Link: 'https://us02web.zoom.us/j/9470737287?pwd=endFbkJ6d0Izb1Z6K0Y1R1VQL1poUT09',
         Teacher: 'ст. вик. Тимофеєва Ю.С.'
     },
     'НДРМД': {
