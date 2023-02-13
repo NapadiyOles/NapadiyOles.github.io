@@ -19,6 +19,8 @@ function fillTableById(table, week, current_day, fill_back){
             let obj = schedule[week][i - 1][day];
             let cell = cells[WeekDays[day]];
             cell.innerHTML = null;
+            cell.style.background = 'none';
+
             if(obj){
                 cell.innerHTML = `<div class="card">
                     <a class="card-body" href="${obj.Subject.Link}" target="_blank">${obj.Subject['Name']}</a>
@@ -26,13 +28,8 @@ function fillTableById(table, week, current_day, fill_back){
                     <div class="text-secondary">${obj.Type}<br>${obj.Subject.Teacher}</div>`
             }
 
-            if(!([6, 0].includes(current_day))) {
-                if(fill_back) {
-                    cells[current_day].style.background = 'lightblue';
-                }
-                else {
-                    cells[current_day].style.background = 'none';
-                }
+            if (!([6, 0].includes(current_day)) && fill_back) {
+                cells[current_day].style.background = 'lightblue';
             }
         }
     }
@@ -48,7 +45,7 @@ function enhanceCurrentTable()
     let table = document.getElementById('schedule')
     let label = document.getElementById('label')
 
-    if(weekNumber % 2 === 0){
+    if(weekNumber % 2 !== 0){
         week = 1;
         label.innerHTML = 'Перший тиждень'
         fillTableById(table, 'week1', currentDate.getDay(), true)
