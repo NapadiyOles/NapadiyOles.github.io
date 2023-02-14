@@ -33,7 +33,6 @@ function fillTableById(table, week, current_day, fill_back){
             }
         }
     }
-
 }
 
 function enhanceCurrentTable()
@@ -41,11 +40,11 @@ function enhanceCurrentTable()
     let currentDate = new Date();
     let startDate = new Date(currentDate.getFullYear(), 0, 1);
     let days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
-    let weekNumber = Math.ceil((days - 1) / 7);
+    let weekNumber = Math.ceil((days) / 7);
     let table = document.getElementById('schedule')
     let label = document.getElementById('label')
 
-    if(weekNumber % 2 !== 0){
+    if(weekNumber % 2 === 0) {
         week = 1;
         label.innerHTML = 'Перший тиждень'
         fillTableById(table, 'week1', currentDate.getDay(), true)
